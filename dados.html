@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
     <link rel="stylesheet" href="assets/vendors/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="assets/css/app.css">
-    <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon">
+    <!-- <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon"> -->
 </head>
 
 <body>
@@ -83,86 +83,52 @@
                     </div>
                 </div>
 
-                                <!-- Basic Horizontal form layout section start -->
-                                <section id="basic-horizontal-layouts">
-                                    <div class="row match-height">
-                                        <div class="col-md-12 col-12">
-                                            <div class="card">
-                                                <div class="card-content">
-                                                    <div class="card-body">
-                                                        <form class="form form-horizontal">
-                                                            <div class="form-body">
-                                                                <div class="row">
-                                                                    <div class="col-md-4">
-                                                                        <label>Numero de Simulaciones</label>
-                                                                    </div>
-                                                                    <div class="col-md-4 form-group">
-                                                                        <input type="number" id="first-name" class="form-control"
-                                                                            name="fname" placeholder="Numero de Simulaciones">
-                                                                    </div>
-<!--                                                                     
-                                                                    <div class="col-12 col-md-8 offset-md-4 form-group">
-                                                                        <div class='form-check'>
-                                                                            <div class="checkbox">
-                                                                                <input type="checkbox" id="checkbox1"
-                                                                                    class='form-check-input' checked>
-                                                                                <label for="checkbox1">Remember Me</label>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div> -->
-                                                                    <div class="col-sm-12 d-flex justify-content-end">
-                                                                        <button type="submit"
-                                                                            class="btn btn-primary me-1 mb-1">SIMULAR</button>
-                                                                        <button type="reset"
-                                                                            class="btn btn-light-secondary me-1 mb-1">LIMPIAR</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </section>
-                                <!-- // Basic Horizontal form layout section end -->
+                
                 <!-- Basic Horizontal form layout section start -->
                 <section id="basic-horizontal-layouts">
                     <div class="row match-height">
-                        <div class="col-md-5 col-12">
+                        <div class="col-md-6 col-12">
                             <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">Parametros de la simulacion</h4>
-                                </div>
                                 <div class="card-content">
                                     <div class="card-body">
                                         <form class="form form-horizontal">
                                             <div class="form-body">
                                                 <div class="row">
+                                                    <div class="col-md-8"><h4 class="card-title">Numero de simulaciones</h4></div>
+                                            
+                                                <div class="col-md-8">
+                                                    <input type="number" id="id-nmsimul" class="form-control"
+                                                        name="id-nmsimul" placeholder="Numero de Simulaciones">
+                                                </div></div>
+                                                
+                                                <div class="col-md-8"><h4 class="card-title">Parametros de la simulacion</h4></div>
+                                                
+                                                <div class="row">
                                                     <div class="col-md-4">
                                                         <label>Numero de Juegos (Juego)</label>
                                                     </div>
                                                     <div class="col-md-8 form-group">
-                                                        <input type="number" id="first-name" class="form-control"
-                                                            name="fname" placeholder="Numero de Juegos (Juego)">
+                                                        <input type="number" id="id-nmj" class="form-control"
+                                                            name="nmj" placeholder="Numero de Juegos (Juego)">
                                                     </div>
                                                     <div class="col-md-4">
                                                         <label>Costo del Juego</label>
                                                     </div>
                                                     <div class="col-md-8 form-group">
-                                                        <input type="number" id="first-name" class="form-control"
-                                                            name="fname" placeholder="Costo del Juego">
+                                                        <input type="number" id="id-cjue" class="form-control"
+                                                            name="cjue" placeholder="Costo del Juego">
                                                     </div>
                                                     <div class="col-md-4">
                                                         <label>Ganancia del Jugador</label>
                                                     </div>
                                                     <div class="col-md-8 form-group">
-                                                        <input type="number" id="first-name" class="form-control"
-                                                            name="fname" placeholder="Ganancia del Jugador">
+                                                        <input type="number" id="id-gjug" class="form-control"
+                                                            name="gjug" placeholder="Ganancia del Jugador">
                                                     </div>
                                                     <div class="col-sm-12 d-flex justify-content-end">
-                                                        <!-- <button type="submit"
-                                                            class="btn btn-primary me-1 mb-1">Submit</button> -->
+                                                        <!-- <button class="myButton"  onclick="cargarDatos()">Generar</button> -->
+                                                        <button type="button" onclick="cargarDatos()"
+                                                            class="btn btn-primary me-1 mb-1">SIMULAR</button>
                                                         <button type="reset"
                                                             class="btn btn-light-secondary me-1 mb-1">LIMPIAR</button>
                                                     </div>
@@ -177,62 +143,25 @@
                                     <h4>PROMEDIO DE RESULTADOS</h4>
                                 </div>
                                 <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-hover table-lg">
+                                    <div class="table-responsive" >
+                                        <table class="table mb-0" id="t02">
                                             <thead>
                                                 <tr>
-                                                    <th>Nombre Variable</th>
-                                                    <th>Valor</th>
+                                                    <th scope="col">GNETA - Ganancia Neta (Casa)</th>
+                                                    <th scope="col">NJUEC - Numero de Juegos Ganados (Casa)</th>
+                                                    <th scope="col">PJUEC(%)</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td class="col-8">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="avatar avatar-md">
-                                                                <img src="assets/images/faces/1.png">
-                                                            </div>
-                                                            <p class="font-bold ms-3 mb-0">GNETA - Ganancia Neta (Casa)</p>
-                                                        </div>
-                                                    </td>
-                                                    <td class="col-auto">
-                                                        <p class=" mb-0"></p>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="col-8">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="avatar avatar-md">
-                                                                <img src="assets/images/faces/2.jpg">
-                                                            </div>
-                                                            <p class="font-bold ms-3 mb-0">NJUEC - Numero de Juegos Ganados (Casa)</p>
-                                                        </div>
-                                                    </td>
-                                                    <td class="col-auto">
-                                                        <p class=" mb-0"></p>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="col-8">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="avatar avatar-md">
-                                                                <img src="assets/images/faces/2.jpg">
-                                                            </div>
-                                                            <p class="font-bold ms-3 mb-0">PJUEC - Porcentaje Juegos Ganados (Casa)</p>
-                                                        </div>
-                                                    </td>
-                                                    <td class="col-auto">
-                                                        <p class=" mb-0"></p>
-                                                    </td>
-                                                </tr>
                                                 
                                             </tbody>
                                         </table>
                                     </div>
+                                    
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-7 col-12">
+                        <div class="col-md-6 col-12">
 
                             <div class="row" id="table-responsive">
                                 <div class="col-12">
@@ -240,11 +169,10 @@
                                         <div class="card-header">
                                             <h4 class="card-title">RESULTADOS SIMULACIONES</h4>
                                         </div>
-                                        <div class="card-content">
-                                            
+                                        <div class="card-content">                                            
                                             <!-- table responsive -->
-                                            <div class="table-responsive">
-                                                <table class="table mb-0">
+                                            <div class="table-responsive" >
+                                                <table class="table mb-0" id="t01">
                                                     <thead>
                                                         <tr>
                                                             <th scope="col">NSIM</th>
@@ -254,21 +182,7 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <!-- <tr>
-                                                            <td>Michael Right</td>
-                                                            <td>Table cell</td>
-                                                            <td>Table cell</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Michael Right</td>
-                                                            <td>Table cell</td>
-                                                            <td>Table cell</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Michael Right</td>
-                                                            <td>Table cell</td>
-                                                            <td>Table cell</td>
-                                                        </tr> -->
+                                                        
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -296,7 +210,7 @@
     </div>
     <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
-
+    <script src="dados.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
 

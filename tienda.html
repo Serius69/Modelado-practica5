@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
     <link rel="stylesheet" href="assets/vendors/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="assets/css/app.css">
-    <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon">
 </head>
 
 <body>
@@ -83,49 +82,6 @@
                     </div>
                 </div>
 
-                                <!-- Basic Horizontal form layout section start -->
-                                <section id="basic-horizontal-layouts">
-                                    <div class="row match-height">
-                                        <div class="col-md-12 col-12">
-                                            <div class="card">
-                                                <div class="card-content">
-                                                    <div class="card-body">
-                                                        <form class="form form-horizontal">
-                                                            <div class="form-body">
-                                                                <div class="row">
-                                                                    <div class="col-md-4">
-                                                                        <label>Numero de Simulaciones</label>
-                                                                    </div>
-                                                                    <div class="col-md-4 form-group">
-                                                                        <input type="number" id="first-name" class="form-control"
-                                                                            name="fname" placeholder="Numero de Simulaciones">
-                                                                    </div>
-<!--                                                                     
-                                                                    <div class="col-12 col-md-8 offset-md-4 form-group">
-                                                                        <div class='form-check'>
-                                                                            <div class="checkbox">
-                                                                                <input type="checkbox" id="checkbox1"
-                                                                                    class='form-check-input' checked>
-                                                                                <label for="checkbox1">Remember Me</label>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div> -->
-                                                                    <div class="col-sm-12 d-flex justify-content-end">
-                                                                        <button type="submit"
-                                                                            class="btn btn-primary me-1 mb-1">SIMULAR</button>
-                                                                        <button type="reset"
-                                                                            class="btn btn-light-secondary me-1 mb-1">LIMPIAR</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </section>
-                                <!-- // Basic Horizontal form layout section end -->
                 <!-- Basic Horizontal form layout section start -->
                 <section id="basic-horizontal-layouts">
                     <div class="row match-height">
@@ -139,33 +95,40 @@
                                         <form class="form form-horizontal">
                                             <div class="form-body">
                                                 <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label>Numero de Simulaciones</label>
+                                                    </div>
+                                                    <div class="col-md-6 form-group">
+                                                        <input type="number" id="id-nmsimul" class="form-control"
+                                                            name="nmsimul" placeholder="Numero de Simulaciones">
+                                                    </div>
                                                     <div class="col-md-4">
                                                         <label>Numero de horas (Horas)</label>
                                                     </div>
                                                     <div class="col-md-8 form-group">
-                                                        <input type="number" id="first-name" class="form-control"
-                                                            name="fname" placeholder="Numero de Dias (Juego)">
+                                                        <input type="number" id="id-nmaxh" class="form-control"
+                                                            name="nmaxh" placeholder="Numero de Dias (Juego)">
                                                     </div>
                                                     <div class="col-md-4">
                                                         <label>Costo Fijo diario (Bs/dia)</label>
                                                     </div>
                                                     <div class="col-md-8 form-group">
-                                                        <input type="number" id="first-name" class="form-control"
-                                                            name="fname" placeholder="Capacidad Bodega (Kg)">
+                                                        <input type="number" id="id-cdiario" class="form-control"
+                                                            name="cdiario" placeholder="Capacidad Bodega (Kg)">
                                                     </div>
                                                     <div class="col-md-4">
                                                         <label>Costo Unitario de compra (Bs/articulo)</label>
                                                     </div>
                                                     <div class="col-md-8 form-group">
-                                                        <input type="number" id="first-name" class="form-control"
-                                                            name="fname" placeholder="Costo Unitario de compra (Bs/articulo)">
+                                                        <input type="number" id="id-cuc" class="form-control"
+                                                            name="cuc" placeholder="Costo Unitario de compra (Bs/articulo)">
                                                     </div>
                                                     <div class="col-md-4">
                                                         <label>Costo Unitario de Venta (Bs/articulo)</label>
                                                     </div>
                                                     <div class="col-md-8 form-group">
-                                                        <input type="number" id="first-name" class="form-control"
-                                                            name="fname" placeholder="Costo Unitario de Venta (Bs/articulo)">
+                                                        <input type="number" id="id-cuv" class="form-control"
+                                                            name="cuv" placeholder="Costo Unitario de Venta (Bs/articulo)">
                                                     </div>
                                                     
                                                    
@@ -252,7 +215,7 @@
                                             
                                             <!-- table responsive -->
                                             <div class="table-responsive">
-                                                <table class="table mb-0">
+                                                <table class="table mb-0" id="tablita2">
                                                     <thead>
                                                         <tr>
                                                             <th scope="col">NSIM</th>
@@ -261,21 +224,7 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <!-- <tr>
-                                                            <td>Michael Right</td>
-                                                            <td>Table cell</td>
-                                                            <td>Table cell</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Michael Right</td>
-                                                            <td>Table cell</td>
-                                                            <td>Table cell</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Michael Right</td>
-                                                            <td>Table cell</td>
-                                                            <td>Table cell</td>
-                                                        </tr> -->
+                                                        
                                                     </tbody>
                                                 </table>
                                             </div>
