@@ -5,16 +5,14 @@ function cargarDatos(){
         <tr>
             <th scope="col">NSIM</th>
             <th scope="col">GNETA(Bs)</th>
-            <th scope="col">TCART (articulos)</th>
+            <th scope="col">TCART(articulos)</th>
         </tr>
     </thead>
     <tbody>
         
     </tbody>
     </table>
-            
     `;
-
     console.log('extraccion de variables');
     var x0 = document.getElementById("id-nmsimul").value; // numero maximo de simulaciones
     var x1 = document.getElementById("id-nmaxh").value; // Numero de horas (Horas)
@@ -30,6 +28,7 @@ function cargarDatos(){
 
     var contador = 1;
     var contador2= 1;
+
     if(x0== "" || x1 =="" || x2 =="" || x3=="" || x4==""){
         alert("Por favor llene los campos");
         return;
@@ -38,14 +37,13 @@ function cargarDatos(){
         alert("Ningun valor puede ser negativo o 0");
         return;
     }    
-    while(contador2<nmsimul){
-        carga(nmsimul,nmj, cjue, contador, contador2, gjug ,0 ,0 ,0);
+    while(contador2<=nmsimul){
+        carga(nmsimul, nmaxh, cdiario, contador, contador2, cuc,cuv ,0 ,0);
         contador2++;      
     }
 }
 
 function carga2(totaljuegosganados,ganancianetatotal,nmsimul){
-    
         pgnetatotal= ganancianetatotal/nmsimul;
         var fila2 = `
         <tr>
@@ -54,74 +52,81 @@ function carga2(totaljuegosganados,ganancianetatotal,nmsimul){
             <td>${pgnetatotal}</td>
         </tr>`;
         console.log(fila2);
-        document.getElementById('t02').innerHTML2+=fila2;
-        console.log('Ganancia neta simulacion '+pgnetatotal);
-        console.log('Juegos Ganados '+totaljuegosganados);
-        console.log('Porcentaje Juegos Ganados '+pgnetatotal);
-        console.log('termina el ciclo');
+        // document.getElementById('t02').innerHTML2+=fila2;
 }
 
-function carga(nmsimul,nmj, cjue, contador, contador2, gjug,gcasa,gneta,njcasa){
-    console.log()
-    if(contador==(nmj+1)){  
+function carga(nmsimul, nmaxh, cdiario, contador, contador2, cuc ,cuv,gneta,tcart){       
+    if(contador==(nmaxh+1)){  
         console.log('termina el ciclo del contador '+contador2);       
-        var totaljuegosganados=totaljuegosganados+njcasa;
+        var totaljuegosganados=totaljuegosganados+tcart;
         var ganancianetatotal=ganancianetatotal+gneta;
-        carga2(totaljuegosganados,ganancianetatotal,nmsimul);
-        // if(contador2==(nmsimul+1)){ 
-            return;
-        // }        
-    }   
-    
-    //inicializacion de variables
-    console.log('inicializacion de variables')
-    var gneta = gneta;
-    var cjue = cjue;
+        return;
+    }  
+
     var gcasa = gcasa;
-    var njcasa = njcasa;
-    var pjcasa = 0;
+    var tcart = tcart;
 
-    console.log('inicia el ciclo externo');
-    
-    contador=contador+1;
-    console.log('inicia el ciclo interno');            
-    var rd1 = Math.random();
-    var rd2 = Math.random();
+    contador=contador+1;       
 
-    // Calculo de los lados de los dados
-    var dado1 = parseInt((1+(5)*rd1));
-    var dado2 = parseInt((1+(5)*rd2));
-
-            
-    sumd1d2=dado1+dado2;
-    console.log('sumatoria dados '+sumd1d2);
-    //VERIFICA SI LA SUMA ES IGUAL A 7
-        if(sumd1d2!=7){
-            gcasa=gcasa+cjue;
-            njcasa=njcasa+1;
-            console.log('juegos que gana la casa '+njcasa);  
-        }else{
-            gcasa=gcasa+cjue-gjug;
-        }    
-        gneta=(gcasa);         
-        pjcasa=(njcasa/nmj)*100 
-        
-        if(contador==(nmj+1)){                  
-            console.log('cargar fila1');
-            if(contador2!=(nmsimul+1)){
-                var fila = `
-                <tr>
-                    <td>${contador2}</td>
-                    <td>${gneta}</td>
-                    <td>${njcasa}</td>
-                    <td>${pjcasa}</td>
-                </tr>`;
-                document.getElementById('t01').innerHTML+=fila;
-            } 
-            carga(nmsimul,nmj, cjue, contador, contador2, gjug,gcasa,gneta,njcasa);           
+    console.log('inicia el ciclo externo'+ contador);
+    var rlleclie = Math.random();   
+    var lleclie=Math.round(4*rlleclie);
+    if(lleclie==0){
+        if(contador==(nmaxh+1)){
+            gneta=tcart*(cuv-cuc)-cdiario;
+            console.log('impresion1');
         }
+        console.log('impresion2');
+        cargartabla(nmsimul, nmaxh, cdiario, contador, contador2, cuc ,cuv,gneta,tcart);
         
-        carga(nmsimul,nmj, cjue, contador, contador2, gjug,gcasa,gneta,njcasa);  
-        
-       
+    }else{
+        var cclie = 0; 
+        console.log('inicia el ciclo interno'); 
+        while(cclie<lleclie){            
+            var rcart = Math.random();    
+            //validacion del randomico
+            if(0<rcart<0.2){
+                cart=0
+                tcart=tcart+cart;
+            }
+            else if(0.2<rcart<0.5){
+                cart=1;
+                tcart=tcart+cart;
+            }
+            if (0.5<rcart<0.9){
+                cart=2
+                tcart=tcart+cart;
+            }  else{
+                cart=3
+                tcart=tcart+cart;
+            }    
+            if(cclie==lleclie){                
+                cclie=0;                
+                if(contador==(nmaxh+1)){
+                    gneta=tcart*(cuv-cuc)-cdiario;
+                    console.log('impresion3');
+                }
+                console.log('impresion4');
+                cargartabla(nmsimul, nmaxh, cdiario, contador, contador2, cuc ,cuv,gneta,tcart);
+            }
+            cclie++;
+        }                  
+    } 
+    cargartabla(nmsimul, nmaxh, cdiario, contador, contador2, cuc ,cuv,gneta,tcart);
+
+}
+function cargartabla(nmsimul, nmaxh, cdiario, contador, contador2, cuc ,cuv,gneta,tcart){
+    if(contador==(nmaxh+1)){
+        if(contador2!=(nmsimul+1)){
+            var fila = `
+            <tr>
+                <td>${contador2}</td>
+                <td>${gneta}</td>
+                <td>${tcart}</td>
+            </tr>`;
+            document.getElementById('tablita2').innerHTML+=fila;            
+            carga(nmsimul, nmaxh, cdiario, contador, contador2, cuc ,cuv,gneta,tcart);
+        }
+    }   
+    carga(nmsimul, nmaxh, cdiario, contador, contador2, cuc ,cuv,gneta,tcart);
 }

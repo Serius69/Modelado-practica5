@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Practica 5 - Lanzamiento de Dados</title>
+    <title>Practica 5 - Distribuidora de azucar</title>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
     <link rel="stylesheet" href="assets/vendors/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="assets/css/app.css">
-    <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon">
 </head>
 
 <body>
@@ -82,50 +81,6 @@
                         
                     </div>
                 </div>
-
-                                <!-- Basic Horizontal form layout section start -->
-                                <section id="basic-horizontal-layouts">
-                                    <div class="row match-height">
-                                        <div class="col-md-12 col-12">
-                                            <div class="card">
-                                                <div class="card-content">
-                                                    <div class="card-body">
-                                                        <form class="form form-horizontal">
-                                                            <div class="form-body">
-                                                                <div class="row">
-                                                                    <div class="col-md-4">
-                                                                        <label>Numero de Simulaciones</label>
-                                                                    </div>
-                                                                    <div class="col-md-4 form-group">
-                                                                        <input type="number" id="nsim" class="form-control"
-                                                                            name="nsim" placeholder="Numero de Simulaciones">
-                                                                    </div>
-<!--                                                                     
-                                                                    <div class="col-12 col-md-8 offset-md-4 form-group">
-                                                                        <div class='form-check'>
-                                                                            <div class="checkbox">
-                                                                                <input type="checkbox" id="checkbox1"
-                                                                                    class='form-check-input' checked>
-                                                                                <label for="checkbox1">Remember Me</label>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div> -->
-                                                                    <div class="col-sm-12 d-flex justify-content-end">
-                                                                        <button type="submit"
-                                                                            class="btn btn-primary me-1 mb-1">SIMULAR</button>
-                                                                        <button type="reset"
-                                                                            class="btn btn-light-secondary me-1 mb-1">LIMPIAR</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </section>
-                                <!-- // Basic Horizontal form layout section end -->
                 <!-- Basic Horizontal form layout section start -->
                 <section id="basic-horizontal-layouts">
                     <div class="row match-height">
@@ -139,46 +94,53 @@
                                         <form class="form form-horizontal">
                                             <div class="form-body">
                                                 <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label>Numero de Simulaciones</label>
+                                                    </div>
+                                                    <div class="col-md-6 form-group">
+                                                        <input type="number" id="id-nmsimul" class="form-control"
+                                                            name="nmsimul" placeholder="Numero de Simulaciones">
+                                                    </div>
                                                     <div class="col-md-4">
-                                                        <label>Numero de Dias (Juego)</label>
+                                                        <label>Numero de Dias (Dia)</label>
                                                     </div>
                                                     <div class="col-md-8 form-group">
-                                                        <input type="number" id="nhd" class="form-control"
-                                                            name="nhd" placeholder="Numero de Dias (Juego)">
+                                                        <input type="number" id="id-nmd" class="form-control"
+                                                            name="nmd" placeholder="Numero de Dias (Dia)">
                                                     </div>
                                                     <div class="col-md-4">
                                                         <label>Capacidad Bodega (Kg)</label>
                                                     </div>
                                                     <div class="col-md-8 form-group">
-                                                        <input type="number" id="cbod" class="form-control"
+                                                        <input type="number" id="id-cbod" class="form-control"
                                                             name="cbod" placeholder="Capacidad Bodega (Kg)">
                                                     </div>
                                                     <div class="col-md-4">
                                                         <label>Costo reorden (Bs/7 dia)</label>
                                                     </div>
                                                     <div class="col-md-8 form-group">
-                                                        <input type="number" id="cord" class="form-control"
-                                                            name="cord" placeholder="Costo Unitario de Inversion (Bs/Kg)">
+                                                        <input type="number" id="id-cord" class="form-control"
+                                                            name="cord" placeholder="Costo reorden (Bs/7 dia)">
                                                     </div>
                                                     <div class="col-md-4">
                                                         <label>Costo Unitario de inventario (Bs/Kg)</label>
                                                     </div>
                                                     <div class="col-md-8 form-group">
-                                                        <input type="number" id="cuinv" class="form-control"
-                                                            name="cuinv" placeholder="Costo Unitario de Venta (Bs/Kg)">
+                                                        <input type="number" id="id-cuinv" class="form-control"
+                                                            name="cuinv" placeholder="Costo Unitario de inventario (Bs/Kg)">
                                                     </div>
                                                     <div class="col-md-4">
                                                         <label>Costo Unitario de Venta (Bs/Kg)</label>
                                                     </div>
                                                     <div class="col-md-8 form-group">
-                                                        <input type="number" id="pvu" class="form-control"
+                                                        <input type="number" id="id-pvu" class="form-control"
                                                             name="pvu" placeholder="Costo Unitario de Venta (Bs/Kg)">
                                                     </div>
                                                     <div class="col-md-4">
                                                         <label>Costo Unitario de Adquisicion (Bs/Kg)</label>
                                                     </div>
                                                     <div class="col-md-8 form-group">
-                                                        <input type="number" id="cuad" class="form-control"
+                                                        <input type="number" id="id-cuad" class="form-control"
                                                             name="cuad" placeholder="Costo Unitario de Adquisicion (Bs/Kg)">
                                                     </div>
                                                     <h4 class="card-title">Demanda de azucar (D. Exponencial)</h4>
@@ -186,24 +148,24 @@
                                                         <label>Media (Kg/dia)</label>
                                                     </div>
                                                     <div class="col-md-8 form-group">
-                                                        <input type="number" id="first-name" class="form-control"
-                                                            name="fname" placeholder="Media (Kg/dia)">
+                                                        <input type="number" id="id-media" class="form-control"
+                                                            name="media" placeholder="Media (Kg/dia)">
                                                     </div>
                                                     <h4 class="card-title">Tiempo de entrega</h4>
                                                     <div class="col-md-5 col-12">
                                                         <label>Min</label>
-                                                        <input type="number" id="first-name" class="form-control"
-                                                            name="fname" placeholder="Minimo">
+                                                        <input type="number" id="id-min" class="form-control"
+                                                            name="min" placeholder="Minimo">
                                                     </div>
                                                     <div class="col-md-5 col-12">
                                                         <label>Max</label>
-                                                        <input type="number" id="first-name" class="form-control"
-                                                            name="fname" placeholder="Maximo">
+                                                        <input type="number" id="id-max" class="form-control"
+                                                            name="max" placeholder="Maximo">
                                                     </div>
 
                                                     <div class="col-sm-12 d-flex justify-content-end">
-                                                        <!-- <button type="submit"
-                                                            class="btn btn-primary me-1 mb-1">Submit</button> -->
+                                                        <button type="button" onclick="cargarDatos()"
+                                                            class="btn btn-primary me-1 mb-1">SIMULAR</button>
                                                         <button type="reset"
                                                             class="btn btn-light-secondary me-1 mb-1">LIMPIAR</button>
                                                     </div>
@@ -285,7 +247,7 @@
                                             
                                             <!-- table responsive -->
                                             <div class="table-responsive">
-                                                <table class="table mb-0">
+                                                <table class="table mb-0" id="t01">
                                                     <thead>
                                                         <tr>
                                                             <th scope="col">NSIM</th>
@@ -295,21 +257,7 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <!-- <tr>
-                                                            <td>Michael Right</td>
-                                                            <td>Table cell</td>
-                                                            <td>Table cell</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Michael Right</td>
-                                                            <td>Table cell</td>
-                                                            <td>Table cell</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Michael Right</td>
-                                                            <td>Table cell</td>
-                                                            <td>Table cell</td>
-                                                        </tr> -->
+                                                        
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -337,7 +285,7 @@
     </div>
     <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
-
+    <script src="azucar.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
 

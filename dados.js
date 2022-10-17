@@ -16,20 +16,20 @@ function cargarDatos(){
             
     `;
      document.getElementById('t02').innerHTML2=`    
-     <div class="table-responsive" >
-     <table class="table mb-0" id="t02">
-         <thead>
-             <tr>
-                 <th scope="col">GNETA - Ganancia Neta (Casa)</th>
-                 <th scope="col">NJUEC - Numero de Juegos Ganados (Casa)</th>
-                 <th scope="col">PJUEC(%)</th>
-             </tr>
-         </thead>
-         <tbody>
-             
-         </tbody>
-     </table>
- </div>
+    <div class="table-responsive" >
+                                        <table class="table mb-0" id="t02">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">GNETA - Ganancia Neta (Casa)</th>
+                                                    <th scope="col">NJUEC - Numero de Juegos Ganados (Casa)</th>
+                                                    <th scope="col">PJUEC(%)</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                
+                                            </tbody>
+                                        </table>
+                                    </div>
     `;
 
     console.log('extraccion de variables');
@@ -76,7 +76,6 @@ function carga2(totaljuegosganados,ganancianetatotal,nmsimul){
 }
 
 function carga(nmsimul,nmj, cjue, contador, contador2, gjug,gcasa,gneta,njcasa){
-    console.log()
     if(contador==(nmj+1)){  
         console.log('termina el ciclo del contador '+contador2);       
         var totaljuegosganados=totaljuegosganados+njcasa;
@@ -105,7 +104,6 @@ function carga(nmsimul,nmj, cjue, contador, contador2, gjug,gcasa,gneta,njcasa){
     // Calculo de los lados de los dados
     var dado1 = parseInt((1+(5)*rd1));
     var dado2 = parseInt((1+(5)*rd2));
-
             
     sumd1d2=dado1+dado2;
     console.log('sumatoria dados '+sumd1d2);
