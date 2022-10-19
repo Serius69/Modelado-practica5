@@ -43,6 +43,11 @@ function cargarDatos(){
     var gjug = parseFloat(x3);//Ganancia del Jugador
     var contador = 1;
     var contador2= 1;
+
+
+    var pgnetatotal=0;
+    var ganancianetatotal=0;
+
     if(x0== "" || x1 =="" || x2 =="" || x3==""){
         alert("Por favor llene los campos");
         return;
@@ -56,31 +61,32 @@ function cargarDatos(){
         carga(nmsimul,nmj, cjue, contador, contador2, gjug ,0 ,0 ,0);
         contador2++;      
     }
+
+    
 }
 
-function carga2(totaljuegosganados,ganancianetatotal,nmsimul){
+function carga2(contador2 ,totaljuegosganados,ganancianetatotal,nmsimul){
     
+        
         pgnetatotal= ganancianetatotal/nmsimul;
         var fila2 = `
         <tr>
-            <td>prueba</td>
-            <td>${totaljuegosganados}</td>
             <td>${pgnetatotal}</td>
+            <td>${totaljuegosganados}</td>
         </tr>`;
         console.log(fila2);
         document.getElementById('t02').innerHTML2+=fila2;
-        console.log('Ganancia neta simulacion '+pgnetatotal);
-        console.log('Juegos Ganados '+totaljuegosganados);
-        console.log('Porcentaje Juegos Ganados '+pgnetatotal);
-        console.log('termina el ciclo');
-}
+ }
+
 
 function carga(nmsimul,nmj, cjue, contador, contador2, gjug,gcasa,gneta,njcasa){
     if(contador==(nmj+1)){  
         console.log('termina el ciclo del contador '+contador2);       
-        var totaljuegosganados=totaljuegosganados+njcasa;
-        var ganancianetatotal=ganancianetatotal+gneta;
-        carga2(totaljuegosganados,ganancianetatotal,nmsimul);
+        totaljuegosganados=totaljuegosganados+njcasa;
+        ganancianetatotal=ganancianetatotal+gneta;
+        if(contador2==nmsimul-1){
+            carga2(contador2,totaljuegosganados,ganancianetatotal,nmsimul);
+        }
         // if(contador2==(nmsimul+1)){ 
             return;
         // }        
@@ -116,7 +122,7 @@ function carga(nmsimul,nmj, cjue, contador, contador2, gjug,gcasa,gneta,njcasa){
             gcasa=gcasa+cjue-gjug;
         }    
         gneta=(gcasa);         
-        pjcasa=(njcasa/nmj)*100 
+        pjcasa=parseFloat((njcasa/nmj)*100).toFixed(2);
         
         if(contador==(nmj+1)){                  
             console.log('cargar fila1');

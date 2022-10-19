@@ -107,12 +107,13 @@ function carga(nmsimul, nmaxh, cdiario, contador, contador2, cuc ,cuv,gneta,tcar
                     console.log('impresion3');
                 }
                 console.log('impresion4');
-                cargartabla(nmsimul, nmaxh, cdiario, contador, contador2, cuc ,cuv,gneta,tcart);
+                // cargartabla(nmsimul, nmaxh, cdiario, contador, contador2, cuc ,cuv,gneta,tcart);
             }
             cclie++;
-        }                  
+        }      
+        cargartabla(nmsimul, nmaxh, cdiario, contador, contador2, cuc ,cuv,gneta,tcart);
+            
     } 
-    cargartabla(nmsimul, nmaxh, cdiario, contador, contador2, cuc ,cuv,gneta,tcart);
 
 }
 function cargartabla(nmsimul, nmaxh, cdiario, contador, contador2, cuc ,cuv,gneta,tcart){
@@ -125,7 +126,7 @@ function cargartabla(nmsimul, nmaxh, cdiario, contador, contador2, cuc ,cuv,gnet
                 <td>${tcart}</td>
             </tr>`;
             document.getElementById('tablita2').innerHTML+=fila;            
-            carga(nmsimul, nmaxh, cdiario, contador, contador2, cuc ,cuv,gneta,tcart);
+            return;
         }
     }   
     carga(nmsimul, nmaxh, cdiario, contador, contador2, cuc ,cuv,gneta,tcart);
