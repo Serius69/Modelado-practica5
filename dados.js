@@ -16,20 +16,20 @@ function cargarDatos(){
             
     `;
      document.getElementById('t02').innerHTML2=`    
-    <div class="table-responsive" >
-                                        <table class="table mb-0" id="t02">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">GNETA - Ganancia Neta (Casa)</th>
-                                                    <th scope="col">NJUEC - Numero de Juegos Ganados (Casa)</th>
-                                                    <th scope="col">PJUEC(%)</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                
-                                            </tbody>
-                                        </table>
-                                    </div>
+     <div class="table-responsive" >
+     <table class="table mb-0" id="t02">
+         <thead>
+             <tr>
+                 <th scope="col">GNETA - Ganancia Neta (Casa)</th>
+                 <th scope="col">NJUEC - Numero de Juegos Ganados (Casa)</th>
+                 <th scope="col">PJUEC(%)</th>
+             </tr>
+         </thead>
+         <tbody>
+             
+         </tbody>
+     </table>
+ </div>
     `;
 
     console.log('extraccion de variables');
@@ -43,11 +43,6 @@ function cargarDatos(){
     var gjug = parseFloat(x3);//Ganancia del Jugador
     var contador = 1;
     var contador2= 1;
-
-
-    var pgnetatotal=0;
-    var ganancianetatotal=0;
-
     if(x0== "" || x1 =="" || x2 =="" || x3==""){
         alert("Por favor llene los campos");
         return;
@@ -61,32 +56,32 @@ function cargarDatos(){
         carga(nmsimul,nmj, cjue, contador, contador2, gjug ,0 ,0 ,0);
         contador2++;      
     }
-
-    
 }
 
-function carga2(contador2 ,totaljuegosganados,ganancianetatotal,nmsimul){
+function carga2(totaljuegosganados,ganancianetatotal,nmsimul){
     
-        
         pgnetatotal= ganancianetatotal/nmsimul;
         var fila2 = `
         <tr>
-            <td>${pgnetatotal}</td>
+            <td>prueba</td>
             <td>${totaljuegosganados}</td>
+            <td>${pgnetatotal}</td>
         </tr>`;
         console.log(fila2);
         document.getElementById('t02').innerHTML2+=fila2;
- }
-
+        console.log('Ganancia neta simulacion '+pgnetatotal);
+        console.log('Juegos Ganados '+totaljuegosganados);
+        console.log('Porcentaje Juegos Ganados '+pgnetatotal);
+        console.log('termina el ciclo');
+}
 
 function carga(nmsimul,nmj, cjue, contador, contador2, gjug,gcasa,gneta,njcasa){
+    console.log()
     if(contador==(nmj+1)){  
         console.log('termina el ciclo del contador '+contador2);       
-        totaljuegosganados=totaljuegosganados+njcasa;
-        ganancianetatotal=ganancianetatotal+gneta;
-        if(contador2==nmsimul-1){
-            carga2(contador2,totaljuegosganados,ganancianetatotal,nmsimul);
-        }
+        var totaljuegosganados=totaljuegosganados+njcasa;
+        var ganancianetatotal=ganancianetatotal+gneta;
+        carga2(totaljuegosganados,ganancianetatotal,nmsimul);
         // if(contador2==(nmsimul+1)){ 
             return;
         // }        
@@ -110,6 +105,7 @@ function carga(nmsimul,nmj, cjue, contador, contador2, gjug,gcasa,gneta,njcasa){
     // Calculo de los lados de los dados
     var dado1 = parseInt((1+(5)*rd1));
     var dado2 = parseInt((1+(5)*rd2));
+
             
     sumd1d2=dado1+dado2;
     console.log('sumatoria dados '+sumd1d2);
@@ -122,7 +118,7 @@ function carga(nmsimul,nmj, cjue, contador, contador2, gjug,gcasa,gneta,njcasa){
             gcasa=gcasa+cjue-gjug;
         }    
         gneta=(gcasa);         
-        pjcasa=parseFloat((njcasa/nmj)*100).toFixed(2);
+        pjcasa=(njcasa/nmj)*100 
         
         if(contador==(nmj+1)){                  
             console.log('cargar fila1');
