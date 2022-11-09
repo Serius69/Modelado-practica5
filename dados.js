@@ -15,22 +15,6 @@ function cargarDatos(){
                                                 </table>
             
     `;
-     document.getElementById('t02').innerHTML2=`    
-     <div class="table-responsive" >
-     <table class="table mb-0" id="t02">
-         <thead>
-             <tr>
-                 <th scope="col">GNETA - Ganancia Neta (Casa)</th>
-                 <th scope="col">NJUEC - Numero de Juegos Ganados (Casa)</th>
-                 <th scope="col">PJUEC(%)</th>
-             </tr>
-         </thead>
-         <tbody>
-             
-         </tbody>
-     </table>
- </div>
-    `;
 
     console.log('extraccion de variables');
     var x0 = document.getElementById("id-nmsimul").value; // numero maximo de simulaciones
@@ -41,8 +25,8 @@ function cargarDatos(){
     var nmj =parseInt(x1);//numero de juegos
     var cjue =parseFloat(x2);//Costo del Juego 1
     var gjug = parseFloat(x3);//Ganancia del Jugador
-    var contador = 1;
-    var contador2= 1;
+    var contador = 0;
+    var contador2= 0;
     if(x0== "" || x1 =="" || x2 =="" || x3==""){
         alert("Por favor llene los campos");
         return;
@@ -58,35 +42,17 @@ function cargarDatos(){
     }
 }
 
-function carga2(totaljuegosganados,ganancianetatotal,nmsimul){
-    
-        pgnetatotal= ganancianetatotal/nmsimul;
-        var fila2 = `
-        <tr>
-            <td>prueba</td>
-            <td>${totaljuegosganados}</td>
-            <td>${pgnetatotal}</td>
-        </tr>`;
-        console.log(fila2);
-        document.getElementById('t02').innerHTML2+=fila2;
-        console.log('Ganancia neta simulacion '+pgnetatotal);
-        console.log('Juegos Ganados '+totaljuegosganados);
-        console.log('Porcentaje Juegos Ganados '+pgnetatotal);
-        console.log('termina el ciclo');
-}
+
+
+var totaljuegosganados = 0;
+var totalganancianeta = 0;
+var pgnetatotal = 0;
+var sumaporcentajes = 0;
 
 function carga(nmsimul,nmj, cjue, contador, contador2, gjug,gcasa,gneta,njcasa){
-    console.log()
-    if(contador==(nmj+1)){  
-        console.log('termina el ciclo del contador '+contador2);       
-        var totaljuegosganados=totaljuegosganados+njcasa;
-        var ganancianetatotal=ganancianetatotal+gneta;
-        carga2(totaljuegosganados,ganancianetatotal,nmsimul);
-        // if(contador2==(nmsimul+1)){ 
-            return;
-        // }        
-    }   
-    
+    if(contador==nmj){ 
+        return;
+    }       
     //inicializacion de variables
     console.log('inicializacion de variables')
     var gneta = gneta;
@@ -117,25 +83,39 @@ function carga(nmsimul,nmj, cjue, contador, contador2, gjug,gcasa,gneta,njcasa){
         }else{
             gcasa=gcasa+cjue-gjug;
         }    
-        gneta=(gcasa);         
-        pjcasa=(njcasa/nmj)*100 
-        
-        if(contador==(nmj+1)){                  
-            console.log('cargar fila1');
-            if(contador2!=(nmsimul+1)){
+
+        if(contador==nmj){         
+            gneta=(gcasa);         
+            pjcasa=(njcasa/nmj)*100
+            totaljuegosganados = totaljuegosganados+njcasa;
+            totalganancianeta = totalganancianeta + gneta;
+            sumaporcentajes = sumaporcentajes + pjcasa;
+            if(contador2!=(nmsimul)){
+                contador2++;
                 var fila = `
                 <tr>
                     <td>${contador2}</td>
                     <td>${gneta}</td>
                     <td>${njcasa}</td>
-                    <td>${pjcasa}</td>
+                    <td>${pjcasa.toFixed(2)}</td>
                 </tr>`;
                 document.getElementById('t01').innerHTML+=fila;
-            } 
+            }
+            if(contador2==(nmsimul)){
+                pgnetatotal = sumaporcentajes/nmsimul; 
+    
+                var objetivo = document.getElementById('texto_nav1');
+                var objetivo2 = document.getElementById('texto_nav2');
+                var objetivo3 = document.getElementById('texto_nav3');
+    
+                objetivo.innerHTML = totalganancianeta;
+                objetivo2.innerHTML = totaljuegosganados;
+                objetivo3.innerHTML = pgnetatotal.toFixed(2);
+            }
             carga(nmsimul,nmj, cjue, contador, contador2, gjug,gcasa,gneta,njcasa);           
-        }
-        
-        carga(nmsimul,nmj, cjue, contador, contador2, gjug,gcasa,gneta,njcasa);  
+        }    
+        carga(nmsimul,nmj, cjue, contador, contador2, gjug,gcasa,gneta,njcasa);
+        // 
         
        
 }
