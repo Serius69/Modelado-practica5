@@ -4,11 +4,11 @@ function cargarDatos(){
       <table class="table mb-0" id="t01">
         <thead>
           <tr>
-           <th scope="col">NSIM</th>
-           <th scope="col">GNETA(Bs)</th>
-           <th scope="col">CTOT(Bs)</th>
-        <th scope="col">DINST(Kg)</th>
-       </tr>
+            <th scope="col">NSIM</th>
+            <th scope="col">GNETA(Bs)</th>
+            <th scope="col">CTOT(Bs)</th>
+            <th scope="col">DINST(Kg)</th>
+          </tr>
        </thead>
        <tbody>
     </tbody>
@@ -46,41 +46,36 @@ function cargarDatos(){
         alert("Ningun valor puede ser negativo o 0");
         return;
     }    
-    // alert("comenzamos");
-
     //inicializacion de variables
-    console.log('inicializacion de variables')
     var cnmd = 1;
     var cnmd2= 1;
-    var cinv = 0;
-    var tent = 0;
-    var gneta=0;
-    var ctot=0;
-    var dins=0;
-    var dazu=0;
-    var ibru=0;
-    var invazu=cbod;
-    var cadq = 2450;
-    var ctord = 100;
+    
     while(cnmd2<nmsimul){
         carga(nmsimul,nmd, cbod, cord, cuinv, pvu ,cuad ,media ,min,max,cnmd,cnmd2,gneta,ctot,dins,cinv,tent,dazu,invazu,ibru,cadq,ctord);
         cnmd2++;      
     }
 }
 
+var totaldemandainsatisfecha = 0;
+var totalganancianeta = 0;
+var totalcostototal = 0;
+
 function carga(nmsimul,nmd, cbod, cord, cuinv, pvu ,cuad ,media ,min,max,cnmd,cnmd2,gneta,ctot,dins,cinv,tent,dazu,invazu,ibru,cadq,ctord){
         
-        if(cnmd==(nmd+1)){   // if si cnmd==(nmd+1) INICIO
-            console.log('termina el ciclo del cnmd '+cnmd2);       
-            var costototal=costototal+ctot;
-            var ganancianetatotal=ganancianetatotal+gneta;
-            // sale de la funcion
+        if(cnmd==nmd){ 
             return;      
-        }   // if si cnmd==(nmd+1) FIN
-        // console.log('nmd'+nmd);
-        console.log('cnmd'+cnmd);
-        cnmd=cnmd+1;
-        
+        } 
+        cnmd=cnmd+1;        
+        var cinv = 0;
+        var tent = 0;
+        var gneta=0;
+        var ctot=0;
+        var dins=0;
+        var dazu=0;
+        var ibru=0;
+        var invazu=cbod;
+        var cadq = 2450;
+        var ctord = 100;
         if((cnmd%7)==0){ // if si cnmdMOD7 == 0 INICIO
             pazu = cbod - invazu;
             cadq = cadq + (pazu * cuad);
@@ -91,133 +86,46 @@ function carga(nmsimul,nmd, cbod, cord, cuinv, pvu ,cuad ,media ,min,max,cnmd,cn
             //Generar randomico rdazu
             var rdazu = Math.random();
             console.log('cambio y reinicio de cnmd por reorden');
-            dazu = Math.round(-100*Math.log(1-rdazu));
-            if(invazu >= dazu){
-                invazu = invazu - dazu;
-                ibru = ibru + (dazu*pvu);
-                cinv=cinv+(cuinv*invazu);
-                if(cnmd==(nmd+1)){
-                    ctot=cinv+cadq+ctord;
-                    gneta=ibru-ctot;    
-
-                    //finalizacion del diagrama
-                    // cargartabla(nmsimul,nmd, cbod, cord, cuinv, pvu ,cuad ,media ,min,max,cnmd,cnmd2,gneta,ctot,dins,cinv,tent,dazu,invazu,ibru,cadq,ctord); 
-                }              
-            }
-
-            cargartabla(nmsimul,nmd, cbod, cord, cuinv, pvu ,cuad ,media ,min,max,cnmd,cnmd2,gneta,ctot,dins,cinv,tent,dazu,invazu,ibru,cadq,ctord);
-
+            dazu = Math.round(-100*Math.log(1-rdazu));            
         } // if si cnmdMOD7 == 0 FIN
         else{
             if(tent==0){ // if  tent == 0 INICIO    YES
                 var rdazu = Math.random();
                 dazu = Math.round(-100*Math.log(1-rdazu));
-                if(invazu >= dazu){  // if  invazu >= dazu INICIO    YES
-                    invazu = invazu - dazu;
-                    ibru = ibru + (dazu*pvu);
-                    cinv=cinv+(cuinv*invazu);
-                        if(cnmd==(nmd+1)){ // if  cnmd==(nmd+1) FIN    YES
-                            ctot=cinv+cadq+ctord;
-                            gneta=ibru-ctot;      
-                            
-                            // cargartabla(nmsimul,nmd, cbod, cord, cuinv, pvu ,cuad ,media ,min,max,cnmd,cnmd2,gneta,ctot,dins,cinv,tent,dazu,invazu,ibru,cadq,ctord); 
-                        } // if  cnmd==(nmd+1) FIN    YES
-                    } // if  invazu >= dazu FIN    YES
-                    else{  // if  invazu >= dazu INICIO    NO
-                        dins=dins+dazu-invazu;
-                        ibru=ibru+(invazu*pvu);
-                        invazu=0;
-                        if(cnmd==(nmd+1)){ // if  cnmd==(nmd+1) FIN    YES
-                            ctot=cinv+cadq+ctord;
-                            gneta=ibru-ctot;  
-                            // cargartabla(nmsimul,nmd, cbod, cord, cuinv, pvu ,cuad ,media ,min,max,cnmd,cnmd2,gneta,ctot,dins,cinv,tent,dazu,invazu,ibru,cadq,ctord);
-                                        
-                        } // if  cnmd==(nmd+1) FIN    YES
-                        // else{
-                            // cargartabla(nmsimul,nmd, cbod, cord, cuinv, pvu ,cuad ,media ,min,max,cnmd,cnmd2,gneta,ctot,dins,cinv,tent,dazu,invazu,ibru,cadq,ctord);
-                        // }
-                    } // if  invazu >= dazu FIN  NO
-                // carga(nmsimul,nmd, cbod, cord, cuinv, pvu ,cuad ,media ,min,max,cnmd,cnmd2,gneta,ctot,dins,cinv,tent,dazu,invazu,ibru,cadq,ctord);            
                 } // if  tent == 0 INICIO   YES
                 else{   // if  tent == 0 INICIO   NO
                     tent=tent-1;
                     if(tent==0){ // if  tent == 0 INICIO    YES
                         invazu=invazu+pazu;
                         var rdazu = Math.random();
-                        dazu = Math.round(-100*Math.log(1-rdazu));
-                        if(invazu >= dazu){  // if  invazu >= dazu INICIO    YES
-                            invazu = invazu - dazu;
-                            ibru = ibru + (dazu*pvu);
-                            cinv=cinv+(cuinv*invazu);
-                                if(cnmd==(nmd+1)){ // if  cnmd==(nmd+1) FIN    YES
-                                    ctot=cinv+cadq+ctord;
-                                    gneta=ibru-ctot;  
-                                    // cargartabla(nmsimul,nmd, cbod, cord, cuinv, pvu ,cuad ,media ,min,max,cnmd,cnmd2,gneta,ctot,dins,cinv,tent,dazu,invazu,ibru,cadq,ctord);
-                                }
-                                // else{// if  invazu >= dazu INICIO  NO
-                                    // cargartabla(nmsimul,nmd, cbod, cord, cuinv, pvu ,cuad ,media ,min,max,cnmd,cnmd2,gneta,ctot,dins,cinv,tent,dazu,invazu,ibru,cadq,ctord); 
-                                // } // if  invazu >= dazu IFIN NO
-                                // if  cnmd==(nmd+1) FIN    YES
-                            } // if  invazu >= dazu FIN    YES
-                            else{  // if  invazu >= dazu INICIO    NO
-                                dins=dins+dazu-invazu;
-                                ibru=ibru+(invazu*pvu);
-                                invazu=0;
-                                if(cnmd==(nmd+1)){ // if  cnmd==(nmd+1) FIN    YES
-                                    ctot=cinv+cadq+ctord;
-                                    gneta=ibru-ctot;    
-                                    // cargartabla(nmsimul,nmd, cbod, cord, cuinv, pvu ,cuad ,media ,min,max,cnmd,cnmd2,gneta,ctot,dins,cinv,tent,dazu,invazu,ibru,cadq,ctord);    
-                                } // if  cnmd==(nmd+1) FIN    YES
-                                // else{ // if  cnmd==(nmd+1) INICIO    NO
-                                    // cargartabla(nmsimul,nmd, cbod, cord, cuinv, pvu ,cuad ,media ,min,max,cnmd,cnmd2,gneta,ctot,dins,cinv,tent,dazu,invazu,ibru,cadq,ctord);
-                                // } // if  cnmd==(nmd+1) FIN    NO
-                            } // if  invazu >= dazu FIN  NO
-                            // cargartabla(nmsimul,nmd, cbod, cord, cuinv, pvu ,cuad ,media ,min,max,cnmd++,cnmd2,gneta,ctot,dins,cinv,tent,dazu,invazu,ibru,cadq,ctord);                    
+                        dazu = Math.round(-100*Math.log(1-rdazu));                       
                     } // if  tent == 0 FIN    YES
                     else{ // if  tent == 0 INICIO    NO
                         var rdazu = Math.random();
-                        dazu = Math.round(-100*Math.log(1-rdazu));
-                        if(invazu >= dazu){ // if  invazu >= dazu INICIO  YES
-                            invazu = invazu - dazu;
-                            ibru = ibru + (dazu*pvu);
-                            cinv=cinv+(cuinv*invazu);
-                            if(cnmd==(nmd+1)){ // if  cnmd==(nmd+1) INICIO    YES
-                                ctot=cinv+cadq+ctord;
-                                gneta=ibru-ctot;     
-                                  
-                                // cargartabla(nmsimul,nmd, cbod, cord, cuinv, pvu ,cuad ,media ,min,max,cnmd,cnmd2,gneta,ctot,dins,cinv,tent,dazu,invazu,ibru,cadq,ctord);
-                            }// if  cnmd==(nmd+1) FIN    YES   
-                            // else{ // if  invazu >= dazu INICIO  YES
-                                // cargartabla(nmsimul,nmd, cbod, cord, cuinv, pvu ,cuad ,media ,min,max,cnmd,cnmd2,gneta,ctot,dins,cinv,tent,dazu,invazu,ibru,cadq,ctord);
-                            // }   // if  invazu >= dazu FIN  NO
-                                    
-                        } // if  invazu >= dazu FIN YES
-                        else{ // if  invazu >= dazu INICIO NO
-                            dins=dins+dazu-invazu;
-                            ibru=ibru+(invazu*pvu);
-                            invazu=0;
-                            if(cnmd==(nmd+1)){ // if  cnmd==(nmd+1) FIN    YES
-                                ctot=cinv+cadq+ctord;
-                                gneta=ibru-ctot;       
-                                // cargartabla(nmsimul,nmd, cbod, cord, cuinv, pvu ,cuad ,media ,min,max,cnmd,cnmd2,gneta,ctot,dins,cinv,tent,dazu,invazu,ibru,cadq,ctord);          
-                            } // if  cnmd==(nmd+1) FIN    YES
-                            // else{ // if  cnmd==(nmd+1) FIN    NO
-                                // cargartabla(nmsimul,nmd, cbod, cord, cuinv, pvu ,cuad ,media ,min,max,cnmd,cnmd2,gneta,ctot,dins,cinv,tent,dazu,invazu,ibru,cadq,ctord);
-                            // } // if  cnmd==(nmd+1) FIN    NO
-                        } // if  invazu >= dazu FIN NO
+                        dazu = Math.round(-100*Math.log(1-rdazu));                        
                     } // if  tent == 0 FIN   NO
                 }
-                        cargartabla(nmsimul,nmd, cbod, cord, cuinv, pvu ,cuad ,media ,min,max,cnmd,cnmd2,gneta,ctot,dins,cinv,tent,dazu,invazu,ibru,cadq,ctord);
-
         }  
 
-        // carga(nmsimul,nmd, cbod, cord, cuinv, pvu ,cuad ,media ,min,max,cnmd,cnmd2,gneta,ctot,dins,cinv,tent,dazu,invazu,ibru,cadq,ctord);
-    }        
+        if(invazu >= dazu){  // if  invazu >= dazu INICIO    YES
+            invazu = invazu - dazu;
+            ibru = ibru + (dazu*pvu);
+            cinv=cinv+(cuinv*invazu);                
+            } // if  invazu >= dazu FIN    YES
+            else{  // if  invazu >= dazu INICIO    NO
+                dins=dins+dazu-invazu;
+                ibru=ibru+(invazu*pvu);
+                invazu=0;                
+            } // if  invazu >= dazu FIN  NO
 
-
-    function cargartabla(nmsimul,nmd, cbod, cord, cuinv, pvu ,cuad ,media ,min,max,cnmd,cnmd2,gneta,ctot,dins,cinv,tent,dazu,invazu,ibru,cadq,ctord){
-        if(cnmd==(nmd+1)){
-            if(cnmd2!=(nmsimul+1)){
+        if(contador==nmj){         
+            ctot=cinv+cadq+ctord;
+            gneta=ibru-ctot;
+            totaljuegosganados = totaljuegosganados+njcasa;
+            totalganancianeta = totalganancianeta + gneta;
+            sumaporcentajes = sumaporcentajes + pjcasa;
+            if(contador2!=(nmsimul)){
+                contador2++;
                 var fila = `
                 <tr>
                     <td>${cnmd2}</td>
@@ -225,10 +133,20 @@ function carga(nmsimul,nmd, cbod, cord, cuinv, pvu ,cuad ,media ,min,max,cnmd,cn
                     <td>${ctot}</td>
                     <td>${dins}</td>
                 </tr>`;
-                document.getElementById('t01').innerHTML+=fila;            
-                return;
+                document.getElementById('t01').innerHTML+=fila;
             }
-        }   
-        cnmd=cnmd+1;
-        carga(nmsimul,nmd, cbod, cord, cuinv, pvu ,cuad ,media ,min,max,cnmd++,cnmd2,gneta,ctot,dins,cinv,tent,dazu,invazu,ibru,cadq,ctord);
-    }
+            if(contador2==(nmsimul)){
+                pgnetatotal = sumaporcentajes/nmsimul; 
+    
+                var objetivo = document.getElementById('texto_nav1');
+                var objetivo2 = document.getElementById('texto_nav2');
+                var objetivo3 = document.getElementById('texto_nav3');
+    
+                objetivo.innerHTML = totalganancianeta;
+                objetivo2.innerHTML = totaljuegosganados;
+                objetivo3.innerHTML = pgnetatotal.toFixed(2);
+            }
+            carga(nmsimul,nmj, cjue, contador, contador2, gjug,gcasa,gneta,njcasa);           
+        }    
+        carga(nmsimul,nmj, cjue, contador, contador2, gjug,gcasa,gneta,njcasa);
+    }        
