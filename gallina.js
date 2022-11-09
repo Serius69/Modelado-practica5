@@ -40,7 +40,7 @@ function cargarDatos(){
       return;
   }    
   while(cds2<=nmsimul){
-      carga(nmsimul, nmaxd, mdh, 0, cds, cds2,0,0,0,0);
+      carga(nmsimul, nmaxd,puvh,puvp, mdh, 0, cds, cds2,0,0,0,0);
       cds2++;      
   }
 }
@@ -50,7 +50,7 @@ var totalhuevossiendohuevos = 0;
 var totalhuevosrotos = 0;
 var totalpollosmueren = 0;
 
-    function carga(nmsimul, nmaxd, mdh, cpviven, cds, cds2,cpmueren,gneta,chhuevos,chr){
+    function carga(nmsimul, nmaxd,puvh,puvp, mdh, cpviven, cds, cds2,cpmueren,gneta,chhuevos,chr){
       if(cds==nmaxd){ 
           return;
       }       
@@ -64,11 +64,14 @@ var totalpollosmueren = 0;
       cds=cds+1;       
       var rhp = Math.random();
       
-      var chp=1-Gammacdf(1,0.5+1);
+      var chp=1-Gammacdf(1,rhp+1);
+
+        // if(chue==mdh){
+        //   chue=0;
+        // }else{
 
         while(chue<mdh){
           if(chp!=0){
-            chue=chue+1;
             var rdh = Math.random();
             if(0<=rdh<=0.2){
               chr=chr+1;
@@ -76,7 +79,7 @@ var totalpollosmueren = 0;
               if(0.2<rdh<=0.5){
                 chn=chn+1;
                 var rvpol = Math.random();
-                if(0<=rvpol){
+                if(0<=rvpol<=0.2){
                   cpmueren=cpmueren+1;
                 }else{
                   cpviven=cpviven+1;
@@ -88,6 +91,8 @@ var totalpollosmueren = 0;
           }
           chue++;
         }
+        gneta=chhuevos*puvh+cpviven*puvp;
+        // }
         //impresion
           
         if(cds==nmaxd){            
@@ -123,9 +128,9 @@ var totalpollosmueren = 0;
               objetivo4.innerHTML = totalhuevosrotos;
               objetivo5.innerHTML = totalpollosmueren;
           }
-          carga(nmsimul,nmaxd, cpviven, cds, cds2,cpmueren,gneta,chhuevos,chr);           
+          carga(nmsimul, nmaxd,puvh,puvp, mdh, cpviven, cds, cds2,cpmueren,gneta,chhuevos,chr);           
       }    
-      carga(nmsimul,nmaxd, cpviven, cds, cds2,cpmueren,gneta,chhuevos,chr);
+      carga(nmsimul, nmaxd,puvh,puvp, mdh, cpviven, cds, cds2,cpmueren,gneta,chhuevos,chr);
       // 
          
   }
