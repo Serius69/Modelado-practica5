@@ -75,7 +75,7 @@
                 <div class="page-title">
                     <div class="row">
                         <div class="col-12 col-md-6 order-md-1 order-last">
-                            <h3>gallina ponedora de huevos</h3>
+                            <h3>Gallina ponedora de huevos</h3>
                         </div>
                     </div>
                 </div>
@@ -87,17 +87,16 @@
                                 <div class="card-header">
                                     <h4 class="card-title">Parametros de la simulacion</h4>
                                 </div>
-
                                 
                                 <div class="card-content">
                                     <div class="card-body">
                                         <form class="form form-horizontal">
                                             <div class="form-body">
                                                 <div class="row">
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-4">
                                                         <label>Numero de Simulaciones</label>
                                                     </div>
-                                                    <div class="col-md-6 form-group">
+                                                    <div class="col-md-8 form-group">
                                                         <input type="number" id="id-nmsimul" class="form-control"
                                                             name="nmsimul" placeholder="Numero de Simulaciones">
                                                     </div>
@@ -120,20 +119,20 @@
                                                     </div>
                                                     <div class="col-md-8 form-group">
                                                         <input type="number" id="id-puvh" class="form-control"
-                                                            name="fname" placeholder="Costo Unitario de Venta (Bs/Kg)">
+                                                            name="fname" placeholder="Precio Unitario de Venta Huevo (Bs)">
                                                     </div>
                                                     <div class="col-md-4">
                                                         <label>Precio Unitario de Venta Pollo (Bs)</label>
                                                     </div>
                                                     <div class="col-md-8 form-group">
                                                         <input type="number" id="id-puvp" class="form-control"
-                                                            name="fname" placeholder="Costo Unitario de Adquisicion (Bs/Kg)">
+                                                            name="fname" placeholder="Precio Unitario de Venta Pollo (Bs)">
                                                     </div>
                                                     <div class="col-sm-12 d-flex justify-content-end">
                                                         <button type="button" onclick="cargarDatos()"
                                                         class="btn btn-primary me-1 mb-1">SIMULAR</button>
                                                         <button type="reset"
-                                                            class="btn btn-light-secondary me-1 mb-1">Reset</button>
+                                                            class="btn btn-light-secondary me-1 mb-1">LIMPIAR DATOS ENTRADA</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -143,19 +142,21 @@
                             </div>
                             <div class="card">
                                 <div class="card-header">
-                                    <h4>PROMEDIO DE RESULTADOS</h4>
+                                    <h4>PROMEDIO DE RESULTADOS </h4>
                                 </div>
                                 <div class="card-body">
-                                    <label>GNETA(Bs) - Ganancia Neta total </label> <br>
+                                    <label>GNETA(Bs) - Ganancia Neta en promedio </label> <br>
                                     <label id="texto_nav1"></label> <br>
-                                    <label>CPVIVEN (pollos) - Cantidad de pollos vivos</label> <br>
+                                    <label>CPVIVEN (pollos) - Cantidad de pollos vivos en promedio</label> <br>
                                     <label id="texto_nav2"></label> <br>          
-                                    <label>CHHHUEVOS (huevos) - Cantidad de huevos siendo huevos</label> <br>
+                                    <label>CHHHUEVOS (huevos) - Cantidad de huevos siendo huevos en promedio</label> <br>
                                     <label id="texto_nav3"></label> <br> 
-                                    <label>CHR (huevos) - Cantidad de huevos rotos</label> <br>
+                                    <label>CHR (huevos) - Cantidad de huevos rotos en promedio</label> <br>
                                     <label id="texto_nav4"></label> <br> 
-                                    <label>CPVIVEN (pollos)- Cantidad de pollos que mu3ren</label> <br>
+                                    <label>CPVIVEN (pollos)- Cantidad de pollos que mu3ren en promedio</label> <br>
                                     <label id="texto_nav5"></label> <br> 
+                                    <button type="reset" onclick="limpiarPromedio()"
+                                        class="btn btn-light-secondary me-1 mb-1">LIMPIAR PROMEDIOS</button>
                                 </div>
                             </div>
                         </div>
@@ -165,7 +166,10 @@
                                 <div class="col-12">
                                     <div class="card">
                                         <div class="card-header">
-                                            <h4 class="card-title">RESULTADOS SIMULACIONES</h4>
+                                            <h4 class="card-title">RESULTADOS SIMULACIONES
+                                                <button type="reset" onclick="limpiarTabla()"
+                                                class="btn btn-light-secondary me-1 mb-1">LIMPIAR TABLA</button>
+                                            </h4>
                                         </div>
                                         <div class="card-content">
                                             

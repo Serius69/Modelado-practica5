@@ -61,25 +61,22 @@ var totalpollosmueren = 0;
       var chue = 0;
       var chr = 0;
       var chn = 0;
-      cds=cds+1;       
-      var rhp = Math.random();
-      
-      var chp=1-Gammacdf(1,rhp+1);
-
+      cds=cds+1;   //contador     
+      var rhp = Math.random(); // random pa poisson
+      var chp=1-Gammacdf(1,rhp+1); //poisson
         // if(chue==mdh){
         //   chue=0;
         // }else{
-
         while(chue<mdh){
           if(chp!=0){
             var rdh = Math.random();
-            if(0<=rdh<=0.2){
+            if(0<=rdh && rdh<=0.2){
               chr=chr+1;
             }else{
-              if(0.2<rdh<=0.5){
+              if(0.2<=rdh && rdh<=0.5){
                 chn=chn+1;
                 var rvpol = Math.random();
-                if(0<=rvpol<=0.2){
+                if(0<=rvpol && rvpol<=0.2){
                   cpmueren=cpmueren+1;
                 }else{
                   cpviven=cpviven+1;
@@ -90,12 +87,9 @@ var totalpollosmueren = 0;
             }            
           }
           chue++;
-        }
-        gneta=chhuevos*puvh+cpviven*puvp;
-        // }
-        //impresion
-          
-        if(cds==nmaxd){            
+        }                
+        if(cds==nmaxd){        
+          gneta=(chhuevos*puvh)+(cpviven*puvp);      
           totalpollosviven = totalpollosviven+cpviven;
           totalganancianeta = totalganancianeta + gneta;
           totalhuevossiendohuevos = totalhuevossiendohuevos + chhuevos;
@@ -122,11 +116,11 @@ var totalpollosmueren = 0;
               var objetivo4 = document.getElementById('texto_nav4');
               var objetivo5 = document.getElementById('texto_nav5');
   
-              objetivo.innerHTML = totalganancianeta;
-              objetivo2.innerHTML = totalpollosviven;
-              objetivo3.innerHTML = totalhuevossiendohuevos;
-              objetivo4.innerHTML = totalhuevosrotos;
-              objetivo5.innerHTML = totalpollosmueren;
+              objetivo.innerHTML = (totalganancianeta/nmsimul).toFixed(2);
+              objetivo2.innerHTML = (totalpollosviven/nmsimul).toFixed(0);
+              objetivo3.innerHTML = (totalhuevossiendohuevos/nmsimul).toFixed(0);
+              objetivo4.innerHTML = (totalhuevosrotos/nmsimul).toFixed(0);
+              objetivo5.innerHTML = (totalpollosmueren/nmsimul).toFixed(0);
           }
           carga(nmsimul, nmaxd,puvh,puvp, mdh, cpviven, cds, cds2,cpmueren,gneta,chhuevos,chr);           
       }    
@@ -197,3 +191,32 @@ var totalpollosmueren = 0;
   }
     
 
+  function limpiarTabla(){
+    var fila = `
+    <thead>
+            <tr>
+                <th scope="col">NSIM</th>
+                <th scope="col">GNETA(Bs)</th>
+                <th scope="col">CPViven(pollos)</th>
+                <th scope="col">CHHHuevos(huevos)</th>
+                <th scope="col">CHR(huevos)</th>
+                <th scope="col">CPMueren(pollos)</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>`;
+                document.getElementById('t01').innerHTML=fila;
+}
+function limpiarPromedio(){
+    var objetivo = document.getElementById('texto_nav1');
+    var objetivo2 = document.getElementById('texto_nav2');
+    var objetivo3 = document.getElementById('texto_nav3');
+    var objetivo4 = document.getElementById('texto_nav4');
+    var objetivo5 = document.getElementById('texto_nav5');
+
+    objetivo.innerHTML = 0;
+    objetivo2.innerHTML = 0;
+    objetivo3.innerHTML = 0;
+    objetivo4.innerHTML = 0;
+    objetivo5.innerHTML = 0;
+}

@@ -95,10 +95,10 @@
                                         <form class="form form-horizontal">
                                             <div class="form-body">
                                                 <div class="row">
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-4">
                                                         <label>Numero de Simulaciones</label>
                                                     </div>
-                                                    <div class="col-md-6 form-group">
+                                                    <div class="col-md-8 form-group">
                                                         <input type="number" id="id-nmsimul" class="form-control"
                                                             name="nmsimul" placeholder="Numero de Simulaciones">
                                                     </div>
@@ -107,21 +107,21 @@
                                                     </div>
                                                     <div class="col-md-8 form-group">
                                                         <input type="number" id="id-nmaxh" class="form-control"
-                                                            name="nmaxh" placeholder="Numero de Dias (Juego)">
+                                                            name="nmaxh" placeholder="Numero de horas (Horas)">
                                                     </div>
                                                     <div class="col-md-4">
                                                         <label>Costo Fijo diario (Bs/dia)</label>
                                                     </div>
                                                     <div class="col-md-8 form-group">
                                                         <input type="number" id="id-cdiario" class="form-control"
-                                                            name="cdiario" placeholder="Capacidad Bodega (Kg)">
+                                                            name="cdiario" placeholder="Costo Fijo diario (Bs/dia)">
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <label>Costo Unitario de compra (Bs/articulo)</label>
+                                                        <label>Costo Unitario de compra(Bs/articulo)</label>
                                                     </div>
                                                     <div class="col-md-8 form-group">
                                                         <input type="number" id="id-cuc" class="form-control"
-                                                            name="cuc" placeholder="Costo Unitario de compra (Bs/articulo)">
+                                                            name="cuc" placeholder="Costo Unitario de compra(Bs/articulo)">
                                                     </div>
                                                     <div class="col-md-4">
                                                         <label>Costo Unitario de Venta (Bs/articulo)</label>
@@ -148,10 +148,12 @@
                                     <h4>PROMEDIO DE RESULTADOS</h4>
                                 </div>
                                 <div class="card-body">
-                                    <label>GNETA(Bs) - Ganancia Neta total </label> <br>
+                                    <label>GNETA(Bs) - Ganancia Neta en promedio </label> <br>
                                     <label id="texto_nav1"></label> <br>
-                                    <label>NJUEC(Juegos) - Numero de items vendidos</label> <br>
+                                    <label>TCART(articulos) - Numero de articulos vendidos en promedio</label> <br>
                                     <label id="texto_nav2"></label> <br>          
+                                    <button type="reset" onclick="limpiarPromedio()"
+                                        class="btn btn-light-secondary me-1 mb-1">LIMPIAR PROMEDIOS</button>
                                 </div>
                             </div>
                         </div>
@@ -161,7 +163,10 @@
                                 <div class="col-12">
                                     <div class="card">
                                         <div class="card-header">
-                                            <h4 class="card-title">RESULTADOS SIMULACIONES</h4>
+                                            <h4 class="card-title">RESULTADOS SIMULACIONES
+                                                <button type="reset" onclick="limpiarTabla()"
+                                                class="btn btn-light-secondary me-1 mb-1">LIMPIAR TABLA</button>
+                                            </h4>
                                         </div>
                                         <div class="card-content">
                                             
@@ -170,9 +175,9 @@
                                                 <table class="table mb-0" id="t01">
                                                     <thead>
                                                         <tr>
-                                                            <th scope="col">NSIM</th>
-                                                            <th scope="col">GNETA(Bs)</th>
-                                                            <th scope="col">TCART (articulos)</th>
+                                                            <th scope="col">Numero simulacion</th>
+                                                            <th scope="col">Ganancia Neta(Bs)</th>
+                                                            <th scope="col">Articulos vendidos (articulos)</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>

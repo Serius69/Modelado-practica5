@@ -1,11 +1,14 @@
+var totalganancianeta = 0;
+var totalcanitadadventasdia = 0;
+
 function cargarDatos(){
     document.getElementById('t01').innerHTML=`    
     <table class="table mb-0" id="t01">
     <thead>
         <tr>
-            <th scope="col">NSIM</th>
-            <th scope="col">GNETA(Bs)</th>
-            <th scope="col">TCART(articulos)</th>
+        <th scope="col">Numero simulacion</th>
+        <th scope="col">Ganancia Neta(Bs)</th>
+        <th scope="col">Articulos vendidos (articulos)</th>
         </tr>
     </thead>
     <tbody>
@@ -29,6 +32,9 @@ function cargarDatos(){
     var contador = 0;
     var contador2= 0;
 
+    totalganancianeta = 0;
+    totalcanitadadventasdia = 0;
+
     if(x0== "" || x1 =="" || x2 =="" || x3=="" || x4==""){
         alert("Por favor llene los campos");
         return;
@@ -43,27 +49,20 @@ function cargarDatos(){
     }
 }
 
-var totalganancianeta = 0;
-var totalcanitadadventasdia = 0;
+
 
 function carga(nmsimul, nmaxh, cdiario, contador, contador2, cuc ,cuv,gneta,tcart){       
     if(contador==nmaxh){  
         return;
     }  
 
-    var gcasa = gcasa;
-    var tcart = tcart;
-
     contador=contador+1;       
 
     console.log('inicia el ciclo externo'+ contador);
     var rlleclie = Math.random();   
     var lleclie=Math.round(4*rlleclie);
-    if(lleclie==0){
-        if(contador==(nmaxh+1)){
-            gneta=tcart*(cuv-cuc)-cdiario;
-        }
-    }else{
+
+    if(lleclie!=0){
         var cclie = 0; 
         console.log('inicia el ciclo interno'); 
         while(cclie<lleclie){            
@@ -83,43 +82,57 @@ function carga(nmsimul, nmaxh, cdiario, contador, contador2, cuc ,cuv,gneta,tcar
             }  else{
                 cart=3
                 tcart=tcart+cart;
-            }    
-            if(cclie==lleclie){                
-                cclie=0;     
-
-                // if(contador==nmaxh){
-                    gneta=tcart*(cuv-cuc)-cdiario;
-                // }
-            }
+            } 
             cclie++;
-        } 
-
-        if(contador==nmaxh){           
-            totalcanitadadventasdia = totalcanitadadventasdia+tcart;
-            totalganancianeta = totalganancianeta + gneta;
-            if(contador2!=(nmsimul)){
-                contador2++;
-                var fila = `
-                <tr>
-                    <td>${contador2}</td>
-                    <td>${gneta}</td>
-                    <td>${tcart}</td>
-                </tr>`;
-                document.getElementById('t01').innerHTML+=fila;
-            }
-            if(contador2==(nmsimul)){
-                pgnetatotal = sumaporcentajes/nmsimul; 
-    
-                var objetivo = document.getElementById('texto_nav1');
-                var objetivo2 = document.getElementById('texto_nav2');
-    
-                objetivo.innerHTML = totalganancianeta;
-                objetivo2.innerHTML = totalcanitadadventasdia;
-            }
-            carga(nmsimul, nmaxh, cdiario, contador, contador2, cuc ,cuv,gneta,tcart);           
-        }    
-        carga(nmsimul, nmaxh, cdiario, contador, contador2, cuc ,cuv,gneta,tcart);
-            
+        }                
     } 
 
+    if(contador==nmaxh){        
+        gneta=tcart*(cuv-cuc)-cdiario;
+        totalcanitadadventasdia = totalcanitadadventasdia+tcart;
+        totalganancianeta = totalganancianeta + gneta;
+        if(contador2!=(nmsimul)){
+            contador2++;
+            var fila = `
+            <tr>
+                <td>${contador2}</td>
+                <td>${gneta}</td>
+                <td>${tcart}</td>
+            </tr>`;
+            document.getElementById('t01').innerHTML+=fila;
+        }
+        if(contador2==(nmsimul)){
+
+            var objetivo = document.getElementById('texto_nav1');
+            var objetivo2 = document.getElementById('texto_nav2');
+
+            objetivo.innerHTML = (totalganancianeta/nmsimul).toFixed(2);
+            objetivo2.innerHTML = (totalcanitadadventasdia/nmsimul).toFixed(0);
+        }
+        carga(nmsimul, nmaxh, cdiario, contador, contador2, cuc ,cuv,gneta,tcart);           
+    }    
+    carga(nmsimul, nmaxh, cdiario, contador, contador2, cuc ,cuv,gneta,tcart);
+
+}
+
+function limpiarTabla(){
+    var fila = `
+    <thead>
+        <tr>
+        <th scope="col">Numero simulacion</th>
+        <th scope="col">Ganancia Neta(Bs)</th>
+        <th scope="col">Articulos vendidos (articulos)</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+    </tbody>`;
+                document.getElementById('t01').innerHTML=fila;
+}
+function limpiarPromedio(){
+    var objetivo = document.getElementById('texto_nav1');
+    var objetivo2 = document.getElementById('texto_nav2');
+
+    objetivo.innerHTML = 0;
+    objetivo2.innerHTML = 0;
 }

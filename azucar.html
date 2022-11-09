@@ -178,13 +178,16 @@
                                     <h4>PROMEDIO DE RESULTADOS</h4>
                                 </div>
                                 <div class="card-body">
-                                    <label>GNETA - Ganancia Neta (Bs) </label> <br>
+                                    <label>GNETA - Ganancia Neta en promedio(Bs) </label> <br>
                                     <label id="texto_nav1"></label> <br>
-                                    <label>CTOT - Costo Total (Bs)</label> <br>
+                                    <label>CTOT - Costo Total en promedio(Bs)</label> <br>
                                     <label id="texto_nav2"></label> <br>
-                                    <label>DINST - Demanda insatisfecha (Kg)</label> <br>
-                                    <label id="texto_nav2"></label> <br>          
+                                    <label>DINST - Demanda insatisfecha en promedio(Kg)</label> <br>
+                                    <label id="texto_nav3"></label> <br>    
+                                    <button type="reset" onclick="limpiarPromedio()"
+                                        class="btn btn-light-secondary me-1 mb-1">LIMPIAR PROMEDIOS</button>      
                                 </div>
+                                
                             </div>
                         </div>
                         <div class="col-md-7 col-12">
@@ -193,7 +196,11 @@
                                 <div class="col-12">
                                     <div class="card">
                                         <div class="card-header">
-                                            <h4 class="card-title">RESULTADOS SIMULACIONES</h4>
+                                            <h4 class="card-title">RESULTADOS SIMULACIONES 
+                                                <button type="reset" onclick="limpiarTabla()"
+                                                class="btn btn-light-secondary me-1 mb-1">LIMPIAR TABLA</button>
+                                            </h4>
+                                            
                                         </div>
                                         <div class="card-content">
                                             

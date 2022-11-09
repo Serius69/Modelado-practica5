@@ -130,7 +130,7 @@
                                                         <button type="button" onclick="cargarDatos()"
                                                             class="btn btn-primary me-1 mb-1">SIMULAR</button>
                                                         <button type="reset"
-                                                            class="btn btn-light-secondary me-1 mb-1">LIMPIAR</button>
+                                                            class="btn btn-light-secondary me-1 mb-1">LIMPIAR DATOS ENTRADA</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -140,15 +140,17 @@
                             </div>
                             <div class="card">
                                 <div class="card-header">
-                                    <h4>PROMEDIO DE RESULTADOS</h4>
+                                    <h4>PROMEDIO DE RESULTADOS </h4>
                                 </div>
                                 <div class="card-body">
-                                    <label>GNETA(Bs) - Ganancia Neta total (Casa)</label> <br>
+                                    <label>GNETA(Bs) - Ganancia Neta promedio (Casa)</label> <br>
                                     <label id="texto_nav1"></label> <br>
-                                    <label>NJUEC(Juegos) - Numero de Juegos Ganados (Casa)</label> <br>
+                                    <label>NJUEC(Juegos) - Numero de Juegos Ganados promedio (Casa)</label> <br>
                                     <label id="texto_nav2"></label> <br>
-                                    <label>PJUEC(%) Porcentaje total de juegos ganados(Casa)</label> <br>
-                                    <label id="texto_nav3"></label> <br>                                    
+                                    <label>PJUEC(%) Porcentaje total de juegos ganados promedio (Casa)</label> <br>
+                                    <label id="texto_nav3"></label> <br>        
+                                    <button type="reset" onclick="limpiarPromedio()"
+                                        class="btn btn-light-secondary me-1 mb-1">LIMPIAR PROMEDIOS</button>                            
                                 </div>
                             </div>
                         </div>
@@ -158,7 +160,11 @@
                                 <div class="col-12">
                                     <div class="card">
                                         <div class="card-header">
-                                            <h4 class="card-title">RESULTADOS SIMULACIONES</h4>
+                                            <h4 class="card-title">RESULTADOS SIMULACIONES
+                                                <button type="reset" onclick="limpiarTabla()"
+                                                class="btn btn-light-secondary me-1 mb-1">LIMPIAR TABLA</button>
+                                            </h4>
+                                           
                                         </div>
                                         <div class="card-content">                                            
                                             <!-- table responsive -->

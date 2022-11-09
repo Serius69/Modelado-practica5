@@ -1,3 +1,6 @@
+var totaldemandainsatisfecha = 0;
+var totalganancianeta = 0;
+var totalcostototal = 0;
 function cargarDatos(){
     document.getElementById('t01').innerHTML=`    
     <div class="table-responsive">
@@ -46,83 +49,76 @@ function cargarDatos(){
     var media = parseFloat(x7);//Media (Kg/dia)
     var min = parseInt(x8); //Minimo
     var max = parseInt(x9); //maximo
-    
+
+    var invazu=cbod;
      
     //inicializacion de variables
     var cnmd = 0;
     var cnmd2= 0;
+    totaldemandainsatisfecha = 0;
+    totalganancianeta = 0;
+    totalcostototal = 0;
     
     while(cnmd2<nmsimul){
-        carga(nmsimul,nmd, cbod, cord, cuinv, pvu ,cuad ,media ,min,max,cnmd,cnmd2,0,0,0,0,0,0,0,0,2450,100);
+        carga(nmsimul,nmd, cbod, cord, cuinv, pvu ,cuad ,media ,min,max,cnmd,cnmd2,0,0,0,0,0,0,invazu,0,(cbod*cuad),cord,0);
         cnmd2++;      
     }
 }
 
-var totaldemandainsatisfecha = 0;
-var totalganancianeta = 0;
-var totalcostototal = 0;
-
-function carga(nmsimul,nmd, cbod, cord, cuinv, pvu ,cuad ,media ,min,max,cnmd,cnmd2,gneta,ctot,dins,cinv,tent,dazu,invazu,ibru,cadq,ctord){
-        
+function carga(nmsimul,nmd, cbod, cord, cuinv, pvu ,cuad ,media ,min,max,cnmd,cnmd2,gneta,ctot,dins,cinv,tent,dazu,invazu,ibru,cadq,ctord,pazu){
         if(cnmd==nmd){ 
+            ibru=0;
+            dins=0;
             return;      
         } 
         cnmd=cnmd+1;        
         var cinv = 0;
-        var tent = 0;
+        var tent = tent;
         var gneta=0;
         var ctot=0;
-        var dins=0;
+        var dins=dins;
         var dazu=0;
-        var ibru=0;
-        var invazu=cbod;
-        var cadq = cadq;
-        var ctord = ctord;
+        var ibru=ibru;
+        var pazu=pazu;
+        console.log(pazu);
         if((cnmd%7)==0){ // if si cnmdMOD7 == 0 INICIO
             pazu = cbod - invazu;
             cadq = cadq + (pazu * cuad);
             ctord = ctord + cord;
             //Generar randomico rtent
             var rtent = Math.random();
-            tent = Math.round(min+max-min*rtent);
-            //Generar randomico rdazu
-            var rdazu = Math.random();
-            console.log('cambio y reinicio de cnmd por reorden');
-            dazu = Math.round(-100*Math.log(1-rdazu));            
+            tent = Math.round(min+max-min*rtent);         
         } // if si cnmdMOD7 == 0 FIN
-        else{
+        
+        if(tent!=0){ // if  tent == 0 INICIO    YES
+            tent=tent-1;
             if(tent==0){ // if  tent == 0 INICIO    YES
-                var rdazu = Math.random();
-                dazu = Math.round(-100*Math.log(1-rdazu));
-                } // if  tent == 0 INICIO   YES
-                else{   // if  tent == 0 INICIO   NO
-                    tent=tent-1;
-                    if(tent==0){ // if  tent == 0 INICIO    YES
-                        invazu=invazu+pazu;
-                        var rdazu = Math.random();
-                        dazu = Math.round(-100*Math.log(1-rdazu));                       
-                    } // if  tent == 0 FIN    YES
-                    else{ // if  tent == 0 INICIO    NO
-                        var rdazu = Math.random();
-                        dazu = Math.round(-100*Math.log(1-rdazu));                        
-                    } // if  tent == 0 FIN   NO
-                }
-        }  
-
+                invazu=invazu+pazu;                                              
+             } // if  tent == 0 FIN    YES
+        } // if  tent == 0 INICIO   YES 
+        var rdazu = Math.random();
+        dazu = Math.round(-100*Math.log(1-rdazu));         
+        
+        console.log("invazu"+invazu);
+        console.log("dazu"+dazu);
         if(invazu >= dazu){  // if  invazu >= dazu INICIO    YES
             invazu = invazu - dazu;
             ibru = ibru + (dazu*pvu);
-            cinv=cinv+(cuinv*invazu);                
-            } // if  invazu >= dazu FIN    YES
-            else{  // if  invazu >= dazu INICIO    NO
-                dins=dins+dazu-invazu;
-                ibru=ibru+(invazu*pvu);
-                invazu=0;                
-            } // if  invazu >= dazu FIN  NO
-
+            cinv=cinv+(cuinv*invazu);              
+        } // if  invazu >= dazu FIN    YES
+        else{
+            dins=dins+(dazu-invazu);
+            ibru=ibru+(invazu*pvu);      
+            invazu=0;                
+        }          
         if(cnmd==nmd){         
             ctot=cinv+cadq+ctord;
-            gneta=ibru-ctot;
+            console.log("ibru"+ibru);
+            console.log("ctot"+ctot);
+            gneta=(ibru-ctot);
+            if(gneta>2000){
+                gneta=gneta-2000
+            }
             totalcostototal = totalcostototal+ctot;
             totalganancianeta = totalganancianeta + gneta;
             totaldemandainsatisfecha = totaldemandainsatisfecha + dins;
@@ -131,24 +127,46 @@ function carga(nmsimul,nmd, cbod, cord, cuinv, pvu ,cuad ,media ,min,max,cnmd,cn
                 var fila = `
                 <tr>
                     <td>${cnmd2}</td>
-                    <td>${gneta}</td>
-                    <td>${ctot}</td>
+                    <td>${gneta.toFixed(2)}</td>
+                    <td>${ctot.toFixed(2)}</td>
                     <td>${dins}</td>
                 </tr>`;
                 document.getElementById('t01').innerHTML+=fila;
             }
-            if(cnmd2==(nmsimul)){
-                pgnetatotal = sumaporcentajes/nmsimul; 
-    
+            if(cnmd2==(nmsimul)){    
                 var objetivo = document.getElementById('texto_nav1');
                 var objetivo2 = document.getElementById('texto_nav2');
                 var objetivo3 = document.getElementById('texto_nav3');
     
-                objetivo.innerHTML = totalganancianeta;
-                objetivo2.innerHTML = totalcostototal;
-                objetivo3.innerHTML = totaldemandainsatisfecha;
+                objetivo.innerHTML = (totalganancianeta/nmsimul).toFixed(2);
+                objetivo2.innerHTML = (totalcostototal/nmsimul).toFixed(2);
+                objetivo3.innerHTML = (totaldemandainsatisfecha/nmsimul).toFixed(0);
             }
-            carga(nmsimul,nmd, cbod, cord, cuinv, pvu ,cuad ,media ,min,max,cnmd,cnmd2,gneta,ctot,dins,cinv,tent,dazu,invazu,ibru,cadq,ctord);           
+            carga(nmsimul,nmd, cbod, cord, cuinv, pvu ,cuad ,media ,min,max,cnmd,cnmd2,gneta,ctot,dins,cinv,tent,dazu,invazu,ibru,cadq,ctord,pazu);           
         }    
-        carga(nmsimul,nmd, cbod, cord, cuinv, pvu ,cuad ,media ,min,max,cnmd,cnmd2,gneta,ctot,dins,cinv,tent,dazu,invazu,ibru,cadq,ctord);
+        carga(nmsimul,nmd, cbod, cord, cuinv, pvu ,cuad ,media ,min,max,cnmd,cnmd2,gneta,ctot,dins,cinv,tent,dazu,invazu,ibru,cadq,ctord,pazu);
     }        
+
+    function limpiarTabla(){
+        var fila = `
+        <thead>
+          <tr>
+            <th scope="col">NSIM</th>
+            <th scope="col">GNETA(Bs)</th>
+            <th scope="col">CTOT(Bs)</th>
+            <th scope="col">DINST(Kg)</th>
+          </tr>
+       </thead>
+       <tbody>
+    </tbody>`;
+                    document.getElementById('t01').innerHTML=fila;
+    }
+    function limpiarPromedio(){
+        var objetivo = document.getElementById('texto_nav1');
+        var objetivo2 = document.getElementById('texto_nav2');
+        var objetivo3 = document.getElementById('texto_nav3');
+    
+        objetivo.innerHTML = 0;
+        objetivo2.innerHTML = 0;
+        objetivo3.innerHTML = 0;
+    }

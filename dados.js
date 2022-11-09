@@ -1,3 +1,8 @@
+var totaljuegosganados = 0;
+var totalganancianeta = 0;
+var pgnetatotal = 0;
+var sumaporcentajes = 0;
+
 function cargarDatos(){
     document.getElementById('t01').innerHTML=`    
     <table class="table mb-0" id="t01">
@@ -27,6 +32,12 @@ function cargarDatos(){
     var gjug = parseFloat(x3);//Ganancia del Jugador
     var contador = 0;
     var contador2= 0;
+
+     totaljuegosganados = 0;
+     totalganancianeta = 0;
+     pgnetatotal = 0;
+     sumaporcentajes = 0;
+
     if(x0== "" || x1 =="" || x2 =="" || x3==""){
         alert("Por favor llene los campos");
         return;
@@ -41,13 +52,30 @@ function cargarDatos(){
         contador2++;      
     }
 }
+function limpiarTabla(){
+    var fila = `
+    <thead>
+    <tr>
+        <th scope="col">NSIM</th>
+        <th scope="col">GNETA(Bs)</th>
+        <th scope="col">NJUEC(Juego)</th>
+        <th scope="col">PJUEC(%)</th>
+    </tr>
+    </thead>
+    <tbody>
+        
+    </tbody>`;
+                document.getElementById('t01').innerHTML=fila;
+}
+function limpiarPromedio(){
+    var objetivo = document.getElementById('texto_nav1');
+    var objetivo2 = document.getElementById('texto_nav2');
+    var objetivo3 = document.getElementById('texto_nav3');
 
-
-
-var totaljuegosganados = 0;
-var totalganancianeta = 0;
-var pgnetatotal = 0;
-var sumaporcentajes = 0;
+    objetivo.innerHTML = 0;
+    objetivo2.innerHTML = 0;
+    objetivo3.innerHTML = 0;
+}
 
 function carga(nmsimul,nmj, cjue, contador, contador2, gjug,gcasa,gneta,njcasa){
     if(contador==nmj){ 
@@ -71,7 +99,6 @@ function carga(nmsimul,nmj, cjue, contador, contador2, gjug,gcasa,gneta,njcasa){
     // Calculo de los lados de los dados
     var dado1 = parseInt((1+(5)*rd1));
     var dado2 = parseInt((1+(5)*rd2));
-
             
     sumd1d2=dado1+dado2;
     console.log('sumatoria dados '+sumd1d2);
@@ -108,9 +135,9 @@ function carga(nmsimul,nmj, cjue, contador, contador2, gjug,gcasa,gneta,njcasa){
                 var objetivo2 = document.getElementById('texto_nav2');
                 var objetivo3 = document.getElementById('texto_nav3');
     
-                objetivo.innerHTML = totalganancianeta;
-                objetivo2.innerHTML = totaljuegosganados;
-                objetivo3.innerHTML = pgnetatotal.toFixed(2);
+                objetivo.innerHTML = (totalganancianeta/nmsimul).toFixed(1);
+                objetivo2.innerHTML = (totaljuegosganados/nmsimul).toFixed(0);
+                objetivo3.innerHTML = ((pgnetatotal/nmsimul)*100).toFixed(2);
             }
             carga(nmsimul,nmj, cjue, contador, contador2, gjug,gcasa,gneta,njcasa);           
         }    
