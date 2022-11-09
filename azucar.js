@@ -15,7 +15,6 @@ function cargarDatos(){
     </table>
     </div>           
     `;
-    console.log('extraccion de variables');
     var x0 = document.getElementById("id-nmsimul").value; // numero maximo de simulaciones
     var x1 = document.getElementById("id-nmd").value; //Numero de Dias (Dia)
     var x2 = document.getElementById("id-cbod").value; //Capacidad Bodega (Kg)
@@ -31,8 +30,14 @@ function cargarDatos(){
         alert("Por favor llene los campos");
         return;
     }
+
+    if(nmsimul <= 0 || nmd <= 0 || cbod<= 0 || cord<= 0 || cuinv <= 0 || pvu <= 0 || cuad<= 0 || media<= 0  || min<= 0 || max<= 0){
+        alert("Ningun valor puede ser negativo o 0");
+        return;
+    }   
+
     var nmsimul =parseInt(x0); // numero maximo de simulaciones
-    var nmd =parseInt(x1);//Numero de Dias (Dia)
+    var nmd =parseInt(x1);//Numero de Dias (Dia) 
     var cbod =parseFloat(x2);//Capacidad Bodega (Kg)
     var cord = parseFloat(x3);//Costo reorden (Bs/7 dia)
     var cuinv =parseFloat(x4);//Costo Unitario de inventario (Bs/Kg)
@@ -42,16 +47,13 @@ function cargarDatos(){
     var min = parseInt(x8); //Minimo
     var max = parseInt(x9); //maximo
     
-    if(nmsimul <= 0 || nmd <= 0 || cbod<= 0 || cord<= 0 || cuinv <= 0 || pvu <= 0 || cuad<= 0 || media<= 0  || min<= 0 || max<= 0){
-        alert("Ningun valor puede ser negativo o 0");
-        return;
-    }    
+     
     //inicializacion de variables
-    var cnmd = 1;
-    var cnmd2= 1;
+    var cnmd = 0;
+    var cnmd2= 0;
     
     while(cnmd2<nmsimul){
-        carga(nmsimul,nmd, cbod, cord, cuinv, pvu ,cuad ,media ,min,max,cnmd,cnmd2,gneta,ctot,dins,cinv,tent,dazu,invazu,ibru,cadq,ctord);
+        carga(nmsimul,nmd, cbod, cord, cuinv, pvu ,cuad ,media ,min,max,cnmd,cnmd2,0,0,0,0,0,0,0,0,2450,100);
         cnmd2++;      
     }
 }
@@ -74,8 +76,8 @@ function carga(nmsimul,nmd, cbod, cord, cuinv, pvu ,cuad ,media ,min,max,cnmd,cn
         var dazu=0;
         var ibru=0;
         var invazu=cbod;
-        var cadq = 2450;
-        var ctord = 100;
+        var cadq = cadq;
+        var ctord = ctord;
         if((cnmd%7)==0){ // if si cnmdMOD7 == 0 INICIO
             pazu = cbod - invazu;
             cadq = cadq + (pazu * cuad);
@@ -118,14 +120,14 @@ function carga(nmsimul,nmd, cbod, cord, cuinv, pvu ,cuad ,media ,min,max,cnmd,cn
                 invazu=0;                
             } // if  invazu >= dazu FIN  NO
 
-        if(contador==nmj){         
+        if(cnmd==nmd){         
             ctot=cinv+cadq+ctord;
             gneta=ibru-ctot;
-            totaljuegosganados = totaljuegosganados+njcasa;
+            totalcostototal = totalcostototal+ctot;
             totalganancianeta = totalganancianeta + gneta;
-            sumaporcentajes = sumaporcentajes + pjcasa;
-            if(contador2!=(nmsimul)){
-                contador2++;
+            totaldemandainsatisfecha = totaldemandainsatisfecha + dins;
+            if(cnmd2!=(nmsimul)){
+                cnmd2++;
                 var fila = `
                 <tr>
                     <td>${cnmd2}</td>
@@ -135,7 +137,7 @@ function carga(nmsimul,nmd, cbod, cord, cuinv, pvu ,cuad ,media ,min,max,cnmd,cn
                 </tr>`;
                 document.getElementById('t01').innerHTML+=fila;
             }
-            if(contador2==(nmsimul)){
+            if(cnmd2==(nmsimul)){
                 pgnetatotal = sumaporcentajes/nmsimul; 
     
                 var objetivo = document.getElementById('texto_nav1');
@@ -143,10 +145,10 @@ function carga(nmsimul,nmd, cbod, cord, cuinv, pvu ,cuad ,media ,min,max,cnmd,cn
                 var objetivo3 = document.getElementById('texto_nav3');
     
                 objetivo.innerHTML = totalganancianeta;
-                objetivo2.innerHTML = totaljuegosganados;
-                objetivo3.innerHTML = pgnetatotal.toFixed(2);
+                objetivo2.innerHTML = totalcostototal;
+                objetivo3.innerHTML = totaldemandainsatisfecha;
             }
-            carga(nmsimul,nmj, cjue, contador, contador2, gjug,gcasa,gneta,njcasa);           
+            carga(nmsimul,nmd, cbod, cord, cuinv, pvu ,cuad ,media ,min,max,cnmd,cnmd2,gneta,ctot,dins,cinv,tent,dazu,invazu,ibru,cadq,ctord);           
         }    
-        carga(nmsimul,nmj, cjue, contador, contador2, gjug,gcasa,gneta,njcasa);
+        carga(nmsimul,nmd, cbod, cord, cuinv, pvu ,cuad ,media ,min,max,cnmd,cnmd2,gneta,ctot,dins,cinv,tent,dazu,invazu,ibru,cadq,ctord);
     }        
